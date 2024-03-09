@@ -1,0 +1,21 @@
+version: '2.1'
+services:
+  mongodb:
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+  nest-app:
+    build:
+      context: ./nest-service/
+    ports:
+      - "8002:8002"
+  next-app:
+    build:
+      context: ./next-frontend/
+    ports:
+      - "3000:3000"
+volumes:
+  mongo-data: {}
